@@ -16,12 +16,12 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(14)};
+  font-size: ${RFValue(14)}px;
 `;
 
 export const Amount = styled.Text<TransactionTypeProps>`
 font-family: ${({ theme }) => theme.fonts.regular};
-font-size: ${RFValue(20)};
+font-size: ${RFValue(20)}px;
 color: ${({ theme, type }) => 
 type === 'positive' ? theme.colors.success : theme.colors.attention};
 margin-top: 2px;
@@ -42,13 +42,13 @@ export const Category = styled.View`
 `;
 
 export const Icon = styled(Feather)`
-  font-size: ${RFValue(20)};
+  font-size: ${RFValue(20)}px;
   color: ${({ theme }) => theme.colors.text};
 
 `;
 
 export const CategoryName = styled.Text`
-  font-size: ${RFValue(14)};
+  font-size: ${RFValue(14)}px;
   color: ${({ theme }) => theme.colors.text};
 
   margin-left: 17px;
@@ -56,7 +56,7 @@ export const CategoryName = styled.Text`
 `;
 
 export const Date = styled.Text`
-  font-size: ${RFValue(14)};
+  font-size: ${RFValue(14)}px;
   color: ${({ theme }) => theme.colors.text};
 
 `;

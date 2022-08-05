@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components'
+import * as SplashScreen from 'expo-splash-screen';
 
 import {
   useFonts,
@@ -9,8 +10,8 @@ import {
 } from '@expo-google-fonts/poppins'
 
 import theme from './src/global/styles/theme'
-import { Dashboard } from './src/screens/Dashboard';
-import * as SplashScreen from 'expo-splash-screen';
+
+import { Register } from './src/screens/Register';
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -27,7 +28,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Dashboard />
+      <Register />
     </ThemeProvider>
   )
 }

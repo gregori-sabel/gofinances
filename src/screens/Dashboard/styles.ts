@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { FlatList } from 'react-native'
+import { FlatList, FlatListProps } from 'react-native'
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
 import { Feather } from '@expo/vector-icons'
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
@@ -93,7 +93,7 @@ export const Transactions = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: ${RFValue(18)};
+  font-size: ${RFValue(18)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
 
   margin-bottom: 16px;
