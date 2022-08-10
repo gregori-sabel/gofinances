@@ -1,9 +1,20 @@
 import React from "react";
 
-import { getBottomSpace } from 'react-native-iphone-x-helper'
-
-import { Transactions, Title, Container, Header, HighlightCards, Icon, Photo, User, UserGreeting, UserInfo, UserName, UserWrapper, TransactionList
- } from './styles'
+import { 
+  Transactions, 
+  Title, 
+  Container, 
+  Header, 
+  HighlightCards, 
+  Icon, 
+  Photo, 
+  User, 
+  UserGreeting, 
+  UserInfo, 
+  UserName, 
+  UserWrapper, 
+  TransactionList
+} from './styles'
 import { HighlightCard } from "../../components/HighlightCard";
 import { TransactionCard, TransactionCardProps } from "../../components/TransactionCard";
 

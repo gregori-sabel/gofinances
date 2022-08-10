@@ -1,13 +1,14 @@
 
 import React, { useState } from 'react';
-import { Modal, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { Modal, Keyboard, Alert } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 import { useForm } from 'react-hook-form'
 
 import { InputForm } from '../../components/Forms/InputForm';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/Forms/Button';
 import { TransactionTypeButton } from '../../components/Forms/TransactionTypeButton';
 import { CategorySelectButton } from '../../components/Forms/CategorySelectButton';
 
@@ -15,9 +16,8 @@ import { CategorySelect } from '../CategorySelect'
 
 import { Container, Header, Title, Form, Fields, TransactionsTypes } from './styles';
 
-interface FormData {
-  name: string;
-  amount: string
+export type FormData = {
+  [name: string]: any;
 }
 
 const schema = Yup.object().shape({
@@ -78,7 +78,11 @@ export function Register() {
   }
 
   return(
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback 
+      onPress={Keyboard.dismiss} 
+      containerStyle={{ flex:1 }}
+      style={{ flex: 1}} 
+    >
       <Container>
 
         <Header>
@@ -127,7 +131,7 @@ export function Register() {
           <Button 
             title='Enviar'
             onPress={handleSubmit(handleRegister)}
-            />
+          />
         </Form>
 
         <Modal visible={categoryModalOpen}>

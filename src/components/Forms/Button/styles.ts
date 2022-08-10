@@ -1,8 +1,14 @@
 import styled from "styled-components/native";
-import { TouchableOpacity } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import { RectButton, RectButtonProperties } from 'react-native-gesture-handler'
+import { PropsWithChildren } from 'react'
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native'
 
-export const Container = styled(TouchableOpacity)`
+interface ButtonProps extends PropsWithChildren<TouchableOpacityProps>{
+
+}
+
+export const Container = styled(TouchableOpacity)<ButtonProps>`
   width: 100%;
   background-color: ${({theme}) => theme.colors.secondary};
 

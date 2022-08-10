@@ -13,7 +13,6 @@ import theme from './src/global/styles/theme'
 
 import { NavigationContainer } from '@react-navigation/native'
 
-import { Register } from './src/screens/Register';
 import { AppRoutes } from './src/routes/app.routes';
 
 export default function App() {
