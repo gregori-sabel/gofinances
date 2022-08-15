@@ -84,8 +84,7 @@ export function Register() {
     }
 
     try{
-      const dataKey = '@gofinances:transactions';
-      
+      const dataKey = '@gofinances:transactions';      
       const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : []
 
@@ -123,6 +122,7 @@ export function Register() {
         <Header>
           <Title>Cadastro</Title>
         </Header>
+        
         <Form>
           <Fields>
             <InputForm 
