@@ -21,7 +21,7 @@ import { AppRoutes } from './src/routes/app.routes';
 
 import { SignIn } from './src/screens/SigIn'
 
-import { AuthContext } from './src/AuthContext'
+import { AuthProvider } from './src/hooks/auth'
 
 export default function App() {
   SplashScreen.preventAutoHideAsync();
@@ -41,9 +41,11 @@ export default function App() {
       <NavigationContainer>
         <StatusBar barStyle='light-content' backgroundColor='transparent' translucent/>
         {/* <AppRoutes /> */}
-        <AuthContext.Provider value={[]}>
+
+        <AuthProvider >
           <SignIn />
-        </AuthContext.Provider>
+        </AuthProvider>
+        
       </NavigationContainer>
     </ThemeProvider>
   )

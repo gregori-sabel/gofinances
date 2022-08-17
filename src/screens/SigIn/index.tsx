@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { Alert } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import AppleSvg from '../../assets/apple.svg';
 import GoogleSvg from '../../assets/google.svg';
 import LogoSvg from '../../assets/logo.svg';
-import { AuthContext } from '../../AuthContext';
+import { useAuth } from '../../hooks/auth';
 import { SignInSocialButton } from '../../components/SignInSocialButton';
 
 import { 
@@ -17,8 +18,20 @@ import {
   FooterWrapper,
 } from './styles';
 
+// ID de cliente: 1087412212408-0ua9ok9rf47jglsba5okjsn8ec95b71u.apps.googleusercontent.com
+// chave secreta: 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
+
 export function SignIn() {
-  const data = useContext(AuthContext);
+  const { signInWithGoogle } = useAuth();
+
+  async function handleSignInWithGoogle(){
+    try{
+      await signInWithGoogle();
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Não foi possível conectar a conta Google');
+    }
+  }
   
   return(
     <Container>
@@ -47,6 +60,7 @@ export function SignIn() {
             <SignInSocialButton 
               title='Entrar com Google'
               svg={GoogleSvg}
+              onPress={handleSignInWithGoogle}
             />
             <SignInSocialButton 
               title='Entrar com Apple'

@@ -1,6 +1,7 @@
 import React from 'react'
 import { RectButtonProps } from 'react-native-gesture-handler'
 import { SvgProps } from 'react-native-svg';
+import { TouchableOpacityProps } from "react-native";
 
 import {
   Button,
@@ -8,7 +9,7 @@ import {
   Text,
 } from './styles'
 
-interface Props extends RectButtonProps {
+interface Props extends TouchableOpacityProps {
   title: string;
   svg: React.FC<SvgProps>;
 }
