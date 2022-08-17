@@ -19,6 +19,10 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import { AppRoutes } from './src/routes/app.routes';
 
+import { SignIn } from './src/screens/SigIn'
+
+import { AuthContext } from './src/AuthContext'
+
 export default function App() {
   SplashScreen.preventAutoHideAsync();
   const [ fontsLoaded ] = useFonts({
@@ -36,7 +40,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <StatusBar barStyle='light-content' backgroundColor='transparent' translucent/>
-        <AppRoutes />
+        {/* <AppRoutes /> */}
+        <AuthContext.Provider value={[]}>
+          <SignIn />
+        </AuthContext.Provider>
       </NavigationContainer>
     </ThemeProvider>
   )
