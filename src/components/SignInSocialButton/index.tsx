@@ -21,7 +21,7 @@ export function SignInSocialButton({
 }: Props) {
 
   return(
-    <Button {...rest}>
+    <Button {...rest} activeOpacity={0.8}>
       <ImageContainer>
         <Svg />
       </ImageContainer>
