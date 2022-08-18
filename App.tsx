@@ -15,38 +15,35 @@ import {
 
 import theme from './src/global/styles/theme'
 
-import { NavigationContainer } from '@react-navigation/native'
+import { Routes } from './src/routes'
 
 import { AppRoutes } from './src/routes/app.routes';
 
-import { SignIn } from './src/screens/SigIn'
+import { SignIn } from './src/screens/SignIn'
 
-import { AuthProvider } from './src/hooks/auth'
+import { AuthProvider, useAuth } from './src/hooks/auth'
 
-export default function App() {
+export default function App() {  
   SplashScreen.preventAutoHideAsync();
   const [ fontsLoaded ] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_700Bold
   })
+  
+  const { userStorageLoading } = useAuth();
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded || userStorageLoading) {
     return null;
   }
   SplashScreen.hideAsync();
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <StatusBar barStyle='light-content' backgroundColor='transparent' translucent/>
-        {/* <AppRoutes /> */}
-
-        <AuthProvider >
-          <SignIn />
-        </AuthProvider>
-        
-      </NavigationContainer>
+      <StatusBar barStyle='light-content' backgroundColor='transparent' translucent/>
+      <AuthProvider >
+        <Routes />
+      </AuthProvider>        
     </ThemeProvider>
   )
 }

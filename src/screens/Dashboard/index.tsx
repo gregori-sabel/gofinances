@@ -19,10 +19,12 @@ import {
   UserName, 
   UserWrapper, 
   TransactionList,
-  LoadContainer
+  LoadContainer,
+  LogoutButton
 } from './styles'
 import { HighlightCard } from "../../components/HighlightCard";
 import { TransactionCard, TransactionCardProps } from "../../components/TransactionCard";
+import { useAuth } from "../../hooks/auth";
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -45,22 +47,24 @@ export function Dashboard() {
   const [ highlightData, setHighlightData ] = useState<HighlightData>({} as HighlightData);
 
   const theme = useTheme();
+  const { signOut, user } = useAuth();
 
   function getLastTransactionDate(
     collection: DataListProps[],
     type: 'positive' | 'negative'
   ){
+    
     const lastTransaction = Math.max.apply(Math , collection
       .filter(transaction => transaction.type === type)
       .map(transaction => new Date(transaction.date).getTime()))
-  
-      // return `${lastTransaction}`
-      return Intl
-      .DateTimeFormat('pt-BR',{
-        day: '2-digit',
-        month: 'long',
-        // year: '2-digit'
-      }).format(new Date(lastTransaction));
+      
+    // return `${lastTransaction}`
+    return Intl
+    .DateTimeFormat('pt-BR',{
+      day: '2-digit',
+      month: 'long',
+      // year: '2-digit'
+    }).format(new Date(lastTransaction));
   }
   
   async function loadTransactions() {
@@ -100,13 +104,12 @@ export function Dashboard() {
         date
       }
     });
-    
     setTransactions(transactionsFormatted);
 
     const lastTransactionEntries = getLastTransactionDate(transactions, 'positive');
     const lastTransactionExpenses = getLastTransactionDate(transactions, 'negative');
     const totalInterval = `01 a ${lastTransactionExpenses}` 
-  
+
 
     const total = entriesTotal - expensesTotal
 
@@ -137,9 +140,10 @@ export function Dashboard() {
     setIsLoading(false);
   }
 
-  useEffect(() => {
-    loadTransactions();
-  }, []);
+  // useEffect(() => {
+  //   loadTransactions();
+  //   console.log('load transactions effect')
+  // }, []);
   
   useFocusEffect(useCallback(() => {
     loadTransactions();
@@ -158,15 +162,16 @@ export function Dashboard() {
             <UserWrapper>
               <UserInfo>
                 <Photo 
-                  source={{ uri: 'https://avatars.githubusercontent.com/u/55760643?v=4'}}
+                  source={{ uri: user.photo}}
                 />
                 <User>
                   <UserGreeting>Ola, </UserGreeting>
-                  <UserName>Rodrigo</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
-
-              <Icon name='power'/>
+              <LogoutButton onPress={signOut}>
+                <Icon name='power'/>
+              </LogoutButton>
 
             </UserWrapper>
           </Header>
