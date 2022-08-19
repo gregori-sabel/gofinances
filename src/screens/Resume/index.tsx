@@ -120,7 +120,7 @@ export function Resume() {
     <Container>
 
           <Header>
-            <Title>Resumo por categoria</Title>
+            <Title>Resumo de despesas</Title>
           </Header>
       { isLoading 
       ? <LoadContainer>
