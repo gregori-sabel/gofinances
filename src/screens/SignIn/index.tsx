@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, Alert } from 'react-native';
+import { ActivityIndicator, Alert, Platform } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components' 
 
@@ -19,8 +19,6 @@ import {
   FooterWrapper,
 } from './styles';
 
-// ID de cliente: 1087412212408-0ua9ok9rf47jglsba5okjsn8ec95b71u.apps.googleusercontent.com
-// chave secreta: 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
 
 export function SignIn() {
   const [ isLoading, setIsLoading ] = useState(false);
@@ -35,11 +33,9 @@ export function SignIn() {
     } catch (error) {
       console.log(error);
       Alert.alert('Não foi possível conectar a conta Google');
-    }finally{
       setIsLoading(false);      
     }
   }
-
   async function handleSignInWithApple(){
     try{
       setIsLoading(true);
@@ -47,7 +43,6 @@ export function SignIn() {
     } catch (error) {
       console.log(error);
       Alert.alert('Não foi possível conectar a conta Apple');
-    }finally{
       setIsLoading(false);      
     }
   }
@@ -81,11 +76,14 @@ export function SignIn() {
               svg={GoogleSvg}
               onPress={handleSignInWithGoogle}
             />
-            <SignInSocialButton 
-              title='Entrar com Apple'
-              svg={AppleSvg}
-              onPress={handleSignInWithApple}
-            />
+            { 
+              Platform.OS === 'ios' &&(
+              <SignInSocialButton 
+                title='Entrar com Apple'
+                svg={AppleSvg}
+                onPress={handleSignInWithApple}
+              />)
+            }
           </FooterWrapper>
 
           { isLoading && 

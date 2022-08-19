@@ -54,21 +54,23 @@ export function Dashboard() {
     type: 'positive' | 'negative'
   ){
     
-    const lastTransaction = Math.max.apply(Math , collection
-      .filter(transaction => transaction.type === type)
-      .map(transaction => new Date(transaction.date).getTime()))
-      
-    // return `${lastTransaction}`
-    return Intl
-    .DateTimeFormat('pt-BR',{
-      day: '2-digit',
-      month: 'long',
-      // year: '2-digit'
-    }).format(new Date(lastTransaction));
+    const lastTransaction = new Date(
+      Math.max.apply(
+        Math,
+        collection
+          .filter((transaction) => transaction.type === type)
+          .map((transaction) => new Date(transaction.date).getTime())
+      )
+    );
+
+    return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString(
+      "pt-BR",
+      { month: "long" }
+    )}`;
   }
   
   async function loadTransactions() {
-    const dataKey = '@gofinances:transactions';
+    const dataKey = `@gofinances:transactions_user:${user.id}`
     const response = await AsyncStorage.getItem(dataKey)
     const transactions = response ? JSON.parse(response) : [];
 
@@ -109,7 +111,6 @@ export function Dashboard() {
     const lastTransactionEntries = getLastTransactionDate(transactions, 'positive');
     const lastTransactionExpenses = getLastTransactionDate(transactions, 'negative');
     const totalInterval = `01 a ${lastTransactionExpenses}` 
-
 
     const total = entriesTotal - expensesTotal
 
