@@ -6,6 +6,9 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.gregsz42.gofinances"
+    }
   }
 }
